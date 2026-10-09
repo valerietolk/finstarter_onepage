@@ -189,12 +189,6 @@
   .nav__wrap { justify-content: flex-start; gap: 16px; }
   .nav__burger { display: flex; }
   .nav__actions { margin-left: auto; }
-  /* the Login pill would not fit beside the burger, logo and CTA: its two links move
-     into the panel instead (.nav__item--login) */
-  .nav__login { display: none; }
-  .nav__item--login { display: flex; }
-  /* set the two login links apart from the section links above them */
-  .nav__item:not(.nav__item--login) + .nav__item--login { margin-top: 8px; padding-top: 18px; border-top: 1px solid rgba(0, 0, 0, 0.08); }
   .nav__menu {
     display: none;
     position: absolute;
@@ -317,9 +311,11 @@
     position: static;
     order: 10;
     width: calc(100% + 48px);
-    height: 180px;
+    height: 200px;
     margin: 8px -24px -24px;
-    object-position: center;
+    /* the art is a portrait with a round photo at its foot: anchor the strip to that foot,
+       otherwise the crop lands in the middle of the circle and reads as a random fragment */
+    object-position: center bottom;
     -webkit-mask-image: linear-gradient(to bottom, transparent, #000 45%);
     mask-image: linear-gradient(to bottom, transparent, #000 45%);
   }
@@ -346,6 +342,14 @@
   .modal__dialog { padding: 28px 20px; }
 }
 
+/* ---------- <=480: no room left for the Login pill beside the burger, the logo and the
+   CTA, so its two links move into the burger panel instead ---------- */
+@media (max-width: 480px) {
+  .nav__login { display: none; }
+  .nav__item--login { display: flex; }
+  /* set the two login links apart from the section links above them */
+  .nav__item:not(.nav__item--login) + .nav__item--login { margin-top: 8px; padding-top: 18px; border-top: 1px solid rgba(0, 0, 0, 0.08); }
+}
 /* =========================================================
    HOW IT WORKS — page sections (same breakpoints as above)
    ========================================================= */

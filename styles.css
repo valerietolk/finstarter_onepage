@@ -289,13 +289,14 @@ img { display: block; }
   background: none;
   font: inherit;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
   color: var(--ink);
   white-space: nowrap;
   cursor: pointer;
   transition: border-color 0.18s ease, color 0.18s ease;
 }
+.nav__usericon { flex: 0 0 16px; }
 .nav__loginbtn:hover,
 .nav__login.is-open .nav__loginbtn { border-color: var(--blue); color: var(--blue); }
 .nav__loginbtn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
@@ -1457,7 +1458,7 @@ a.rainbow:focus-visible { opacity: 0.8; }
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 24px;
+  gap: 16px;
 }
 .footer__brand img { width: 155px; height: 32px; }
 .footer__tagline {
@@ -1477,8 +1478,9 @@ a.rainbow:focus-visible { opacity: 0.8; }
 }
 .footer__powered-link { font-weight: 500; color: var(--blue); }
 .footer__cols {
-  /* two short columns now, so they hug their content instead of filling 822px */
+  /* one short row of links now, centred against the brand block on its left */
   flex: 0 0 auto;
+  align-self: center;
   display: flex;
   gap: 64px;
 }
