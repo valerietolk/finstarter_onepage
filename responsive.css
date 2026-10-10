@@ -239,13 +239,20 @@
     min-height: 300px;
     padding: 28px;
   }
-  .ccard__h4 { min-height: 0; max-width: 60%; }
-  .ccard__p { max-width: 60%; }
+  .ccard__h4 { min-height: 0; max-width: 62%; }
+  .ccard__p { max-width: 62%; }
+  /* The art is a tall portrait and its photo runs right up to its own edges, so any box of a
+     different shape cuts it off with a hard line — which is what the 55%-wide box used to do
+     here. The photo now fades out towards the top left under a radial mask, the way the round
+     vignette does on the desktop card, so no edge of the crop is ever visible. index.html
+     feeds a wider crop of the same shot to these widths through <picture>. */
   .ccard__img {
     left: auto;
     right: 0;
-    width: 55%;
+    width: 58%;
     object-position: right bottom;
+    -webkit-mask-image: radial-gradient(135% 115% at 88% 100%, #000 42%, transparent 76%);
+    mask-image: radial-gradient(135% 115% at 88% 100%, #000 42%, transparent 76%);
   }
 
   /* why: grey cards one under another */
@@ -305,19 +312,15 @@
   .hero .hero__sub, .banner .hero__sub { font-size: 17px; line-height: 23px; }
 
   /* companies: text takes the full card width, the photo becomes a band under it */
-  .ccard { padding: 24px; min-height: 0; gap: 12px; }
+  .ccard { padding: 24px; min-height: 320px; gap: 12px; }
+  /* a phone column is too narrow to keep a text column beside the photo: the text takes the
+     full width again and the photo sits behind its lower right corner, as on the desktop card */
   .ccard__h4, .ccard__p { max-width: none; }
   .ccard__img {
-    position: static;
-    order: 10;
-    width: calc(100% + 48px);
-    height: 200px;
-    margin: 8px -24px -24px;
-    /* the art is a portrait with a round photo at its foot: anchor the strip to that foot,
-       otherwise the crop lands in the middle of the circle and reads as a random fragment */
+    width: 100%;
     object-position: center bottom;
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 45%);
-    mask-image: linear-gradient(to bottom, transparent, #000 45%);
+    -webkit-mask-image: radial-gradient(120% 78% at 78% 100%, #000 30%, transparent 72%);
+    mask-image: radial-gradient(120% 78% at 78% 100%, #000 30%, transparent 72%);
   }
 
   /* features: image on top, text under it (landscape render again) */

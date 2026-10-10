@@ -303,7 +303,7 @@ img { display: block; }
 .nav__login .nav__chevron { transition: transform 0.2s ease; }
 .nav__login.is-open .nav__chevron { transform: rotate(180deg); }
 /* same glass panel as the old "Built for you" menu, hung from the right edge of the button */
-.dropdown.dropdown--login { left: auto; right: 0; top: calc(100% + 10px); width: 220px; }
+.dropdown.dropdown--login { left: auto; right: 0; top: calc(100% + 10px); width: 176px; }
 .dropdown.dropdown--login::before { top: -10px; height: 10px; }
 .nav__login.is-open .dropdown,
 .nav__login:hover .dropdown,
@@ -759,6 +759,8 @@ img { display: block; }
 }
 .ccard--shadow-a { box-shadow: 0 0 16px rgba(29, 29, 31, 0.24); }
 .ccard--shadow-b { box-shadow: 0 0 32px rgba(18, 18, 47, 0.08); }
+/* the <picture> only picks the file; the card still lays out the <img> itself */
+.ccard__pic { display: contents; }
 .ccard__img {
   position: absolute;
   left: 0;
@@ -1474,7 +1476,7 @@ a.rainbow:focus-visible { opacity: 0.8; }
   font-weight: 400;
   font-size: 13px;
   line-height: 15.73px;
-  color: var(--ink);
+  color: var(--grey);
 }
 .footer__powered-link { font-weight: 500; color: var(--blue); }
 .footer__cols {
