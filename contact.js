@@ -38,8 +38,8 @@
     var rejected = [];
     Array.prototype.forEach.call(fileInput.files, function (f) {
       var ext = (f.name.split('.').pop() || '').toLowerCase();
-      if (ALLOWED.indexOf(ext) === -1) { rejected.push(f.name + ' — format not supported'); return; }
-      if (f.size > MAX_BYTES) { rejected.push(f.name + ' — larger than 10 MB'); return; }
+      if (ALLOWED.indexOf(ext) === -1) { rejected.push(f.name + ' - format not supported'); return; }
+      if (f.size > MAX_BYTES) { rejected.push(f.name + ' - larger than 10 MB'); return; }
       if (!files.some(function (x) { return x.name === f.name && x.size === f.size; })) files.push(f);
     });
     fileErr.textContent = rejected.join('. ');

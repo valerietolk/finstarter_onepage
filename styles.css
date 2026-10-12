@@ -315,6 +315,10 @@ img { display: block; }
 }
 /* copies of the two login links for the burger panel (responsive.css shows them there) */
 .nav__item--login { display: none; }
+/* Contact is a page, not a section of this one: on the desktop it sits apart from the anchor
+   links, next to Login and Book a Demo; the copy inside the menu is for the burger panel */
+.nav__item--contact { display: none; }
+.nav__contact { margin-right: 12px; }
 /* dark sections: the outline button follows the rest of the header */
 .nav--on-dark:not(.is-menu-open) .nav__loginbtn { color: #fff; border-color: rgba(255, 255, 255, 0.3); }
 .nav--on-dark:not(.is-menu-open) .nav__loginbtn:hover,
@@ -761,6 +765,9 @@ img { display: block; }
 .ccard--shadow-b { box-shadow: 0 0 32px rgba(18, 18, 47, 0.08); }
 /* the <picture> only picks the file; the card still lays out the <img> itself */
 .ccard__pic { display: contents; }
+/* with the <picture> box dissolved, its <source> would take a grid row of its own and push the
+   title into the description row (they overlapped); it only feeds the image, so it stays out */
+.ccard__pic source { display: none; }
 .ccard__img {
   position: absolute;
   left: 0;
@@ -1317,13 +1324,21 @@ img { display: block; }
   transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .qa.is-open .qa__answer { opacity: 1; transform: none; }
-.qa__answer p {
-  padding: 0 24px 24px;
+/* answers can run to several paragraphs and a list */
+.qa__answer > :last-child { padding-bottom: 24px; }
+.qa__answer p,
+.qa__answer ul {
+  margin: 0;
+  padding: 0 24px 12px;
   font-weight: 400;
   font-size: 16px;
   line-height: 23.2px;
   color: var(--ink);
 }
+.qa__answer ul { padding-left: 46px; }
+.qa__answer li + li { margin-top: 6px; }
+.qa__answer li::marker { color: var(--blue); }
+.qa__answer b { font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
   .qa, .qa__icon, .qa__icon::before, .qa__icon::after, .qa__body, .qa__answer { transition: none; }
 }

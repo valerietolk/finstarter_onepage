@@ -42,18 +42,48 @@
   .footer__brand { flex: 1 1 40%; }
 
 
-  .companies__row {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: auto auto minmax(0, 1fr) auto auto minmax(0, 1fr);
-    height: calc(534px * 2 + 16px);
-  }
-  .ccard { min-width: 0; }
 
   .rmap__label, .rmap__note { font-size: 13px; line-height: 17px; }  /* keeps the 4 FinStarter labels apart on a laptop */
 
   /* features: still four in a row, so the cards get smaller titles */
   .fcard__body { padding: 20px 20px 0; }
   .fcard__h3 { font-size: 22px; line-height: 27px; letter-spacing: -0.4px; }
+}
+
+/* ---------- ≤1680: company cards go horizontal ----------
+   Six portrait cards in a row get too narrow below ~1680px: the long titles ("Financial
+   publishers and research advisories") run to four or five lines and crowd the description.
+   From here down the cards are wide instead, two columns of three: text on the left, the wide
+   crop of the photo on the right (index.html feeds it through <picture>), as on the tablet. */
+@media (max-width: 1680px) {
+  .companies__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    height: auto;
+  }
+  .ccard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    grid-row: auto;
+    height: auto;
+    min-height: 300px;
+    padding: 28px;
+  }
+  .ccard__h4 { min-height: 0; max-width: 62%; }
+  .ccard__p { max-width: 62%; }
+  .ccard__img {
+    left: auto;
+    right: 0;
+    width: 58%;
+    object-position: right bottom;
+    -webkit-mask-image: radial-gradient(135% 115% at 88% 100%, #000 42%, transparent 76%);
+    mask-image: radial-gradient(135% 115% at 88% 100%, #000 42%, transparent 76%);
+  }
+}
+/* ≤1024: one wide card under another */
+@media (max-width: 1024px) {
+  .companies__row { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* ---------- ≤1024: tablet landscape ---------- */
@@ -163,10 +193,8 @@
   .nmbr__v { font-size: 64px; line-height: 72px; letter-spacing: -1.9px; }
   .backed__cols { gap: 40px; }
 
-  /* footer: brand row on top, three columns below */
-  .footer__top { flex-wrap: wrap; gap: 32px; }
-  .footer__brand { flex: 1 1 100%; }
-  .footer__cols { flex: 1 1 100%; width: 100%; }
+  /* footer: the links are one short row now, so they stay to the right of the brand block
+     down to the phone (the stacking moved to ≤640) */
   .footer__col { padding: 0; }
 }
 
@@ -189,6 +217,8 @@
   .nav__wrap { justify-content: flex-start; gap: 16px; }
   .nav__burger { display: flex; }
   .nav__actions { margin-left: auto; }
+  .nav__contact { display: none; }
+  .nav__item--contact { display: flex; margin-top: 8px; padding-top: 18px; border-top: 1px solid rgba(0, 0, 0, 0.08); }
   .nav__menu {
     display: none;
     position: absolute;
@@ -341,6 +371,10 @@
   .nmbr__v { font-size: 48px; line-height: 56px; letter-spacing: -1.4px; }
 
   .footer { padding: 24px 20px 16px; }
+  /* phone: brand block on top, the links below it */
+  .footer__top { flex-wrap: wrap; gap: 32px; }
+  .footer__brand { flex: 1 1 100%; }
+  .footer__cols { flex: 1 1 100%; width: 100%; }
   .footer__col { flex: 1 1 100%; }
   .modal__dialog { padding: 28px 20px; }
 }
